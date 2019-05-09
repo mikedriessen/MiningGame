@@ -24,7 +24,7 @@ public class playerMove : MonoBehaviour
         {
             this.transform.Translate(0, yUp, 0);
         }
-        
+        /*
         if (getSwipe)
         {
             RaycastHit hit;
@@ -39,7 +39,7 @@ public class playerMove : MonoBehaviour
      
         movePosition = Vector3.Lerp(transform.position, movement, Time.deltaTime * speed);
         PlayerRightbody.MovePosition(movePosition);
-        
+        */
     }
 
     public void swipeDown()
