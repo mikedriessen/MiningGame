@@ -14,9 +14,12 @@ public class playerMove : MonoBehaviour
 
     private RaycastHit hit_Info;
 
+    private GameObject other;
+
     private void Start()
     {
         canMove = true;
+        other.gameObject.GetComponent<Renderer>().enabled = false;
     }
 
     public void swipeUp()
@@ -109,7 +112,8 @@ public class playerMove : MonoBehaviour
         if (other.collider.CompareTag("Dirt"))
         {
             canMove = true;
-            Destroy(other.gameObject);
+            other.gameObject.GetComponent<Renderer>().enabled = false;
+            //Destroy(other.gameObject);
             Debug.Log("Tried to destroy");
         }
         else
