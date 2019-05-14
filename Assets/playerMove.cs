@@ -12,6 +12,8 @@ public class playerMove : MonoBehaviour
     private bool canMove;
     private bool getSwipe;
 
+    private RaycastHit hit_Info;
+
     private void Start()
     {
         canMove = true;
@@ -22,49 +24,83 @@ public class playerMove : MonoBehaviour
         getSwipe = true;
         if (canMove)
         {
-            this.transform.Translate(0, yUp, 0);
-        }
-        /*
-        if (getSwipe)
-        {
-            RaycastHit hit;
-            Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-            if (Physics.Raycast(ray, out hit))
+            Debug.DrawRay(transform.position,transform.up * 5);
+            
+            Ray ray = new Ray(this.transform.position, this.transform.up);
+            if (Physics.Raycast(ray,out hit_Info,5f))
             {
-                movement = hit.point;          
+                if (hit_Info.collider.tag == "Dirt")
+                {
+                    
+                    Debug.Log("Does it work?!??");
+                    this.transform.Translate(0, yUp, 0);
+                }
             }
 
-            getSwipe = false;
         }
-     
-        movePosition = Vector3.Lerp(transform.position, movement, Time.deltaTime * speed);
-        PlayerRightbody.MovePosition(movePosition);
-        */
     }
+
 
     public void swipeDown()
     {
         if (canMove)
         {
-           
-            this.transform.Translate(0,yDown,0);
-        }   
+            Debug.DrawRay(transform.position,transform.up*-1f * 5f);
+            
+            Ray ray = new Ray(this.transform.position, transform.up * -1f);
+            if (Physics.Raycast(ray,out hit_Info,5f))
+            {
+                if (hit_Info.collider.tag == "Dirt")
+                {
+                    
+                    Debug.Log("Does it work?!??");
+                    this.transform.Translate(0, yDown, 0);
+                }
+            }
+
+        }
+
     }
 
     public void swipeLeft()
     {
         if (canMove)
         {
-            this.transform.Translate(xLeft,0,0);
+            Debug.DrawRay(transform.position,transform.right*-1f* 5f);
+            
+            Ray ray = new Ray(this.transform.position, transform.right * -1f );
+            if (Physics.Raycast(ray,out hit_Info,5f))
+            {
+                if (hit_Info.collider.tag == "Dirt")
+                {
+                    
+                    Debug.Log("Does it work?!??");
+                    
+                    this.transform.Translate(xLeft, 0, 0);
+                }
+            }
         }
     }
 
     public void swipeRight()
     {
-        if(canMove)
+        if (canMove)
         {
+            Debug.DrawRay(transform.position,transform.right* 5f);
             
-            this.transform.Translate(xRight,0,0);
+            Ray ray = new Ray(this.transform.position, transform.right);
+            if (Physics.Raycast(ray,out hit_Info,5f))
+            {
+                if (hit_Info.collider.tag == "Dirt")
+                {
+                    
+                    Debug.Log("Does it work?!??");
+                    
+                    this.transform.Translate(xRight, 0, 0);
+                }
+            }
+
+           
         }
     }
 
@@ -84,3 +120,4 @@ public class playerMove : MonoBehaviour
 
     }
 }
+
