@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class playerMove : MonoBehaviour
 {
@@ -12,6 +13,10 @@ public class playerMove : MonoBehaviour
     private bool canMove;
     private bool getSwipe;
 
+    private int ropeAmt;
+
+    public Text ropeText;
+
     private RaycastHit hit_Info;
 
     private GameObject other;
@@ -19,7 +24,9 @@ public class playerMove : MonoBehaviour
     private void Start()
     {
         canMove = true;
-        other.gameObject.GetComponent<Renderer>().enabled = false;
+        ropeAmt = 6;
+        ropeText.text = "Rope left:" + ropeAmt;
+
     }
 
     public void swipeUp()
@@ -36,7 +43,26 @@ public class playerMove : MonoBehaviour
                 {
                     
                     Debug.Log("Does it work?!??");
-                    this.transform.Translate(0, yUp, 0);
+                    
+                    if (ropeAmt > 0)
+                    {
+                        ropeAmt--;
+                        ropeText.text = "Rope left:" + ropeAmt;
+                        this.transform.Translate(0, yUp, 0);
+                      
+                    }
+                    else if (ropeAmt == 0)
+                    {
+                        ropeText.text = "Not enough rope.....";
+                    }
+                        /*
+                    if (other.GetComponent<Renderer>().enabled == false)
+                    {
+                        
+                        this.transform.Translate(0, yUp, 0);
+                    }
+                    */
+                    
                 }
             }
 
@@ -57,8 +83,22 @@ public class playerMove : MonoBehaviour
                 {
                     
                     Debug.Log("Does it work?!??");
-                    this.transform.Translate(0, yDown, 0);
+                    
+                    if (ropeAmt > 0)
+                    {  
+                        ropeAmt--;
+                        ropeText.text = "Rope left:" + ropeAmt;
+                        this.transform.Translate(0, yDown, 0);
+                        
+                    }
+                    else if (ropeAmt == 0)
+                    {
+                        ropeText.text = "Not enough rope.....";
+                    }
+                    
                 }
+                  
+               
             }
 
         }
@@ -79,7 +119,18 @@ public class playerMove : MonoBehaviour
                     
                     Debug.Log("Does it work?!??");
                     
-                    this.transform.Translate(xLeft, 0, 0);
+                    if (ropeAmt > 0)
+                    {  
+                        ropeAmt--;
+                        ropeText.text = "Rope left:" + ropeAmt;
+                        this.transform.Translate(xLeft, 0, 0);
+                        
+                    }
+                    else if (ropeAmt == 0)
+                    {
+                        ropeText.text = "Not enough rope.....";
+                    }
+                    
                 }
             }
         }
@@ -99,11 +150,21 @@ public class playerMove : MonoBehaviour
                     
                     Debug.Log("Does it work?!??");
                     
-                    this.transform.Translate(xRight, 0, 0);
+                    if (ropeAmt > 0)
+                    {  
+                        ropeAmt--;
+                        ropeText.text = "Rope left:" + ropeAmt;
+                        this.transform.Translate(xRight, 0, 0);
+                        
+                    }
+                    else if (ropeAmt == 0)
+                    {
+                        ropeText.text = "Not enough rope.....";
+                    }
+                    
                 }
             }
 
-           
         }
     }
 
@@ -111,6 +172,7 @@ public class playerMove : MonoBehaviour
     {
         if (other.collider.CompareTag("Dirt"))
         {
+       
             canMove = true;
             other.gameObject.GetComponent<Renderer>().enabled = false;
             //Destroy(other.gameObject);
