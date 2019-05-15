@@ -7,6 +7,8 @@ TagManager:
   - Fire
   - Dirt
   - Wall
+  - Rock
+  - Artifact
   layers:
   - Default
   - TransparentFX

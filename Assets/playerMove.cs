@@ -29,6 +29,7 @@ public class playerMove : MonoBehaviour
 
     }
 
+
     public void swipeUp()
     {
         getSwipe = true;
