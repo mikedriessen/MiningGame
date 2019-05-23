@@ -24,7 +24,7 @@ public class Artifact : MonoBehaviour
             RaycastHit hit;
             if (Physics.Raycast(ray, out hit))
                 Debug.Log("YEET");
-            if (hit.collider.gameObject.CompareTag("Artifact"))
+            if (hit.collider.CompareTag("Artifact"))
             {
                 Debug.Log("ARTIFACT");
                 gameObject.SetActive(false);
