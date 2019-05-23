@@ -7,6 +7,9 @@ TagManager:
   - Fire
   - Dirt
   - Wall
+  - Shop
+  - Artifact
+  - Move
   layers:
   - Default
   - TransparentFX

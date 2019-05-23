@@ -17,6 +17,8 @@ public class SwipeManager : MonoBehaviour {
   private Vector2 fingerUp;
   private DateTime fingerUpTime;
 
+
+
   private void Update () {
     if (Input.GetMouseButtonDown(0)) {
       this.fingerDown = Input.mousePosition;
@@ -40,6 +42,8 @@ public class SwipeManager : MonoBehaviour {
         this.CheckSwipe();
       }
     }
+
+    
   }
 
   private void CheckSwipe() {
@@ -48,7 +52,9 @@ public class SwipeManager : MonoBehaviour {
 
     float deltaX = this.fingerDown.x - this.fingerUp.x;
     if (Mathf.Abs(deltaX) > this.swipeThreshold) {
-      if (deltaX > 0) {
+      
+      if (deltaX > 0 )
+      {
         this.OnSwipeRight.Invoke();
         //Debug.Log("right");
       } else if (deltaX < 0) {
@@ -66,6 +72,7 @@ public class SwipeManager : MonoBehaviour {
         this.OnSwipeDown.Invoke();
         //Debug.Log("down");
       }
+      
     }
 
     this.fingerUp = this.fingerDown;
