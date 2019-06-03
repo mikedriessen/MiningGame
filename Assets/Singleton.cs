@@ -120,7 +120,7 @@ public class Singleton : MonoBehaviour
                        
                        GUI.DrawTexture(new Rect(100, 100, 900, 1800),settingsTexture , ScaleMode.ScaleToFit, true, 0.0F);
                        
-                       if (GUI.Button(new Rect(750, 100, 128, 128), btnTextures[0]))
+                       if (GUI.Button(new Rect(150, 100, 128, 128), btnTextures[0]))
                             //  Debug.Log("Clicked the button with an Image1");
                        enableSettings = false;
                        //enableSettings = false;
