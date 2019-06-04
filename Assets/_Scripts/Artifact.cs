@@ -7,7 +7,7 @@ public class Artifact : MonoBehaviour
 {
 
     public Text countText;
-    private int count;
+    public int count;
 
     private void Start()
     {
@@ -27,7 +27,7 @@ public class Artifact : MonoBehaviour
             if (hit.collider.gameObject.CompareTag("Artifact"))
             {
                 Debug.Log("ARTIFACT");
-                gameObject.SetActive(false);
+                hit.collider.gameObject.SetActive(false);
                 count++;
                 SetCountText();
             }
@@ -37,5 +37,13 @@ public class Artifact : MonoBehaviour
     void SetCountText()
     {
         countText.text = "Count: " + count.ToString();
+    }
+
+    void Score()
+    {
+        if (count == 1)
+        {
+            Debug.Log("WOW MOOI MAN");
+        }
     }
 }
