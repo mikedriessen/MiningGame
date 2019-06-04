@@ -23,13 +23,18 @@ public class Artifact : MonoBehaviour
             Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
             RaycastHit hit;
             if (Physics.Raycast(ray, out hit))
-                Debug.Log("YEET");
-            if (hit.collider.gameObject.CompareTag("Artifact"))
             {
+                Debug.Log("YEET");
+                //nee
+
+            if (hit.collider.CompareTag("Artifact"))
+            {
+                
                 Debug.Log("ARTIFACT");
                 hit.collider.gameObject.SetActive(false);
                 count++;
                 SetCountText();
+            }
             }
         }
     }

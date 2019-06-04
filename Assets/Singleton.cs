@@ -115,12 +115,12 @@ public class Singleton : MonoBehaviour
          {
                 if (enableSettings)
                 {
-                       GUI.backgroundColor = new Color(0, 0, 0);
+                       GUI.backgroundColor = new Color(0, 0, 0, 0);
                        Debug.Log("Tried to open Settings");
                        
-                       GUI.DrawTexture(new Rect(100, 100, 900, 2000),settingsTexture , ScaleMode.ScaleToFit, true, 0.0F);
+                       GUI.DrawTexture(new Rect(100, 100, 900, 1800),settingsTexture , ScaleMode.ScaleToFit, true, 0.0F);
                        
-                       if (GUI.Button(new Rect(700, 740, 128, 128), btnTextures[0]))
+                       if (GUI.Button(new Rect(150, 100, 128, 128), btnTextures[0]))
                             //  Debug.Log("Clicked the button with an Image1");
                        enableSettings = false;
                        //enableSettings = false;

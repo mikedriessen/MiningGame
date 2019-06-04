@@ -18,8 +18,8 @@ public class SwipeManager : MonoBehaviour {
   private DateTime fingerUpTime;
 
 
-
   private void Update () {
+    
     if (Input.GetMouseButtonDown(0)) {
       this.fingerDown = Input.mousePosition;
       this.fingerUp = Input.mousePosition;
@@ -30,6 +30,7 @@ public class SwipeManager : MonoBehaviour {
       this.fingerUpTime = DateTime.Now;
       this.CheckSwipe();
     }
+    
     foreach (Touch touch in Input.touches) {
       if (touch.phase == TouchPhase.Began) {
         this.fingerDown = touch.position;
@@ -56,23 +57,24 @@ public class SwipeManager : MonoBehaviour {
       if (deltaX > 0 )
       {
         this.OnSwipeRight.Invoke();
-        //Debug.Log("right");
+        Debug.Log("right");
       } else if (deltaX < 0) {
         this.OnSwipeLeft.Invoke();
-        //Debug.Log("left");
+        Debug.Log("left");
       }
     }
-
-    float deltaY = fingerDown.y - fingerUp.y;
-    if (Mathf.Abs(deltaY) > this.swipeThreshold) {
-      if (deltaY > 0) {
-        this.OnSwipeUp.Invoke();
-        //Debug.Log("up");
-      } else if (deltaY < 0) {
-        this.OnSwipeDown.Invoke();
-        //Debug.Log("down");
+    else
+    {
+      float deltaY = fingerDown.y - fingerUp.y;
+      if (Mathf.Abs(deltaY) > this.swipeThreshold) {
+        if (deltaY > 0) {
+          this.OnSwipeUp.Invoke();
+          Debug.Log("up");
+        } else if (deltaY < 0) {
+          this.OnSwipeDown.Invoke();
+          Debug.Log("down");
+        }
       }
-      
     }
 
     this.fingerUp = this.fingerDown;

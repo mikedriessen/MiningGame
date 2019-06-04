@@ -283,7 +283,7 @@ public class playerMove : MonoBehaviour
    {
        if (openShop)
        {
-           GUI.backgroundColor = new Color(0,0,0);
+           GUI.backgroundColor = new Color(0,0,0,0);
            Debug.Log("Tried to open Shop2");
            GUI.DrawTexture(new Rect(100, 100, 900, 2000), aTexture, ScaleMode.ScaleToFit, true, 0.0F);
           
