@@ -72,7 +72,9 @@
     <Compile Include="Assets\_Scripts\ColorGradient.cs" />
     <Compile Include="Assets\_Scripts\NewBehaviourScript.cs" />
     <Compile Include="Assets\_Scripts\playerMove.cs" />
+    <Compile Include="Assets\_Scripts\SettingsMenu.cs" />
     <Compile Include="Assets\_Scripts\Singleton.cs" />
+    <Compile Include="Assets\_Scripts\StartScreen.cs" />
     <Compile Include="Assets\_Scripts\SwipeManager.cs" />
     <Compile Include="Assets\_Scripts\XPSlider.cs" />
     <Compile Include="Assets\SampleScenes\Menu\Scripts\MenuSceneLoader.cs" />
