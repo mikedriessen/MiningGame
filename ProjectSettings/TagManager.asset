@@ -10,6 +10,8 @@ TagManager:
   - Shop
   - Artifact
   - Move
+  - Destroyed
+  - Museum
   layers:
   - Default
   - TransparentFX

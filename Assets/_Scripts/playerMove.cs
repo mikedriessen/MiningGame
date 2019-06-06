@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -11,37 +12,46 @@ public class playerMove : MonoBehaviour
     public float yDown = -1f;
 
     private bool canMove;
-    private bool getSwipe;
 
     private int ropeAmt;
     public Text ropeText;
     private RaycastHit hit_Info;
     private GameObject other;
     public Texture[] btnTextures;
+
+    public Renderer rend;
     
     //GUI
     public Texture aTexture;
     private bool openShop;
+    private bool openMuseum;
     
-    //SwipeDalay
-    private bool canSwipe = false;
+    //Can still move on rope
+    private bool RopeMove = false;
     
+   // private bool canSwipe = false;
+   //Vertical Slider
+   private int textureIndex = 0;
+   public Texture[] sliderTextures;
+   
+   public float vSliderValue = 5.5f;
+
 
     private void Start()
     {
-        canSwipe = true;
+        //canSwipe = true;
         canMove = true;
-        ropeAmt = 60;
+        ropeAmt = 12;
         ropeText.text = "Rope left:" + ropeAmt;
 
         openShop = false;
-
+        openMuseum = false;
     }
+
 
 
     public void swipeUp()
     {
-        getSwipe = true;
         if (canMove)
         {
             Debug.DrawRay(transform.position, transform.up * 0.8f);
@@ -49,44 +59,38 @@ public class playerMove : MonoBehaviour
             Ray ray = new Ray(this.transform.position, this.transform.up);
             if (Physics.Raycast(ray, out hit_Info, 0.8f))
             {
-                if (hit_Info.collider.tag == "Dirt" && canSwipe)
+                if (hit_Info.collider.tag == "Dirt" || hit_Info.collider.tag == "Destroyed")
                 {
-                    canSwipe = false;
+                    if ( hit_Info.collider.tag == "Destroyed")
+                    {
+                        RopeMove = true;
+                    }
                     Debug.Log("Does it work?!??");
 
-                    if (ropeAmt > 0)
+                    if (ropeAmt > 0 || ropeAmt == 0 || RopeMove)
                     {
-                        ropeAmt--;
+                        if (hit_Info.collider.tag == "Dirt" )
+                        {
+                            ropeAmt--;
+                            XPSlider.Brain.AddXP();
+                        }
                         ropeText.text = "Rope left:" + ropeAmt;
-                        XPSlider.Brain.AddXP();
                         this.transform.Translate(0, yUp, 0);
+                        RopeMove = false;
 
                     }
-                    else if (ropeAmt == 0)
+                    if (ropeAmt == 0 || ropeAmt < 1)
                     {
                         ropeText.text = "Not enough rope.....";
-                        
+
                     }
-                    /*
-                if (other.GetComponent<Renderer>().enabled == false)
-                {
-                    
-                    this.transform.Translate(0, yUp, 0);
                 }
-                */
-
-                }
-
-            
+              }
             }
-            canSwipe = true;
-        }
-
-
-        Debug.DrawRay(transform.position, transform.up * 0.6f);
+        Debug.DrawRay(transform.position, transform.up * 0.8f);
 
         Ray rayy= new Ray(this.transform.position, this.transform.up);
-        if (Physics.Raycast(rayy, out hit_Info, 0.6f))
+        if (Physics.Raycast(rayy, out hit_Info, 0.8f))
         {
             if (hit_Info.collider.tag == "Shop")
             {
@@ -94,28 +98,13 @@ public class playerMove : MonoBehaviour
                 Shop();
               
             }
-        }
-/*
-        RaycastHit[] hits;
-        //hits = Physics.RaycastAll(transform.position, transform.forward, 100.0F);
-        Debug.DrawRay(transform.position,transform.up *0.8f , Color.red);
-        hits = Physics.RaycastAll(this.transform.position, this.transform.up, 0.8f);
-
-        for (int i = 0; i < hits.Length; i++)
-        {
-            RaycastHit hit = hits[i];
-            Renderer rend = hit.transform.GetComponent<Renderer>();
-
-            if (rend)
+         else if (hit_Info.collider.tag == "Museum")
             {
-              Debug.Log("Opened Shop");
-                   
-                    Shop();
-                    
-                
+
+                Museum();
+              
             }
         }
-        */
     }
 
 
@@ -128,42 +117,38 @@ public class playerMove : MonoBehaviour
             Ray ray = new Ray(this.transform.position, transform.up * -1f);
             if (Physics.Raycast(ray,out hit_Info,0.8f))
             {
-                if (hit_Info.collider.tag == "Dirt" && !openShop && canSwipe)
+                if (hit_Info.collider.tag == "Dirt" || hit_Info.collider.tag == "Destroyed"  && !openShop)
                 {
-                    canSwipe = false;
+                    if ( hit_Info.collider.tag == "Destroyed")
+                    {
+                        RopeMove = true;
+                    }
                     openShop = false;  
                     Debug.Log("Does it work?!??");
-                    if (ropeAmt > 0 && openShop)
+                    if (ropeAmt > 0 || ropeAmt == 0 || RopeMove && openShop)
                     {
                         openShop = false;  
                     }
-                    if (ropeAmt > 0 && !openShop)
-                    {  
-                        ropeAmt--;
+                    if (ropeAmt > 0 || ropeAmt == 0 || RopeMove && !openShop)
+                    {     
+                        if (hit_Info.collider.tag == "Dirt" )
+                        {
+                            ropeAmt--;
+                            XPSlider.Brain.AddXP();
+                        }
                         ropeText.text = "Rope left:" + ropeAmt;
-                        XPSlider.Brain.AddXP();
                         this.transform.Translate(0, yDown, 0);
-                        
-
+                        RopeMove = false;
                     }
-                    else if (ropeAmt == 0)
+                    if (ropeAmt == 0 || ropeAmt < 1)
                     {
                         ropeText.text = "Not enough rope.....";
                     }
+                  
                     
                 }
-
-                if (hit_Info.collider.tag == "Dirt" && openShop)
-                {
-                    openShop = false;  
-                }
-
-              
-
             }
-
         }
-        canSwipe = true;
     }
 
     public void swipeLeft()
@@ -175,40 +160,39 @@ public class playerMove : MonoBehaviour
             Ray ray = new Ray(this.transform.position, transform.right * -1f );
             if (Physics.Raycast(ray,out hit_Info,1f))
             {
-                if (hit_Info.collider.tag == "Dirt" && canSwipe)
+                if (hit_Info.collider.tag == "Dirt" || hit_Info.collider.tag == "Destroyed" )
                 {
-                    canSwipe = false;
+                    if ( hit_Info.collider.tag == "Destroyed")
+                    {
+                        RopeMove = true;
+                    }
                     
                     Debug.Log("Does it work?!??");
-                    if (ropeAmt > 0 && openShop)
+                    if (ropeAmt > 0 || ropeAmt == 0 || RopeMove && openShop)
                     {
                         openShop = false;  
                     }
                     
-                    if (ropeAmt > 0)
+                    if (ropeAmt > 0 || ropeAmt == 0 || RopeMove)
                     {  
-                        ropeAmt--;
+                        if (hit_Info.collider.tag == "Dirt" )
+                        {
+                            ropeAmt--;
+                            XPSlider.Brain.AddXP();
+                        }
                         ropeText.text = "Rope left:" + ropeAmt;
-                        XPSlider.Brain.AddXP();
                         this.transform.Translate(xLeft, 0, 0);
-                        openShop = false;  
-                        
+                        openShop = false;
+                        RopeMove = false;
+
                     }
-                    else if (ropeAmt == 0)
+                    if (ropeAmt == 0 || ropeAmt < 1)
                     {
                         ropeText.text = "Not enough rope.....";
                     }
-                    
                 }
-                if (hit_Info.collider.tag == "Dirt" && openShop)
-                {
-                    openShop = false;  
-                }
-             
             }
         }
-
-        canSwipe = true;
     }
 
     public void swipeRight()
@@ -220,71 +204,113 @@ public class playerMove : MonoBehaviour
             Ray ray = new Ray(this.transform.position, transform.right);
             if (Physics.Raycast(ray,out hit_Info,1f))
             {
-                if (hit_Info.collider.tag == "Dirt" && canSwipe)
+                if (hit_Info.collider.tag == "Dirt" || hit_Info.collider.tag == "Destroyed" )
                 {
-                    canSwipe = false;
-                    if (ropeAmt > 0 && openShop)
+                    if ( hit_Info.collider.tag == "Destroyed")
+                    {
+                        RopeMove = true;
+                    }
+                    
+                    if (ropeAmt > 0 || ropeAmt == 0 || RopeMove && openShop)
                     {
                         openShop = false;  
                     }
                     Debug.Log("Does it work?!??");
                     
-                    if (ropeAmt > 0)
+                    if (ropeAmt > 0 || ropeAmt == 0 || RopeMove)
                     {  
-                        ropeAmt--;
+                        if (hit_Info.collider.tag == "Dirt" )
+                        {
+                            ropeAmt--;
+                            XPSlider.Brain.AddXP();
+                        }
                         ropeText.text = "Rope left:" + ropeAmt;
-                        XPSlider.Brain.AddXP();
                         this.transform.Translate(xRight, 0, 0);
-                        openShop = false;  
-                        
+                        openShop = false;
+                        RopeMove = false;
+
                     }
-                    else if (ropeAmt == 0)
+                    if (ropeAmt == 0 || ropeAmt < 1)
                     {
                         ropeText.text = "Not enough rope.....";
                     }
                     
                 }
-                if (hit_Info.collider.tag == "Dirt" && openShop)
-                {
-                    openShop = false;  
-                }
             }
         }
-
-        canSwipe = true;
     }
 
     void OnCollisionEnter(Collision other)
     {
         if (other.collider.CompareTag("Dirt"))
         {
-            canMove = true;
+            other.gameObject.tag = "Destroyed";
             other.gameObject.GetComponent<Renderer>().enabled = false;
+            canMove = true;
             //Destroy(other.gameObject);
             Debug.Log("Tried to destroy");
-           
         }
+        /*
         else
         {
             canMove = false;
         }
-     
+        */
     }
 
    void Shop()
    {
        openShop = true;
-
-
    }
 
- 
+   void Museum()
+   {
+       openMuseum = true;
+   }
+
    void OnGUI()
    {
        if (openShop)
        {
            GUI.backgroundColor = new Color(0,0,0,0);
-           Debug.Log("Tried to open Shop2");
+           GUI.DrawTexture(new Rect(100, 100, 900, 2000), aTexture, ScaleMode.ScaleToFit, true, 0.0F);
+
+           if (GUI.Button(new Rect(250, 390, 128, 128), btnTextures[0]))
+               addRope(6); 
+               if (GUI.Button(new Rect(400, 390, 128, 128), btnTextures[1]))
+                   Debug.Log("Clicked the button with an Image1");
+               if (GUI.Button(new Rect(550, 390, 128, 128), btnTextures[2]))
+                   Debug.Log("Clicked the button with an Image1");
+               if (GUI.Button(new Rect(700, 390, 128, 128), btnTextures[3]))
+                   Debug.Log("Clicked the button with an Image1");
+           
+
+        
+               if (GUI.Button(new Rect(250, 740, 128, 128), btnTextures[4]))
+                   Debug.Log("Clicked the button with an Image1");
+               if (GUI.Button(new Rect(400, 740, 128, 128), btnTextures[5]))
+                   Debug.Log("Clicked the button with an Image1");
+               if (GUI.Button(new Rect(550, 740, 128, 128), btnTextures[6]))
+                   Debug.Log("Clicked the button with an Image1");
+               if (GUI.Button(new Rect(700, 740, 128, 128), btnTextures[7]))
+                   Debug.Log("Clicked the button with an Image1");
+           
+
+          
+               if (GUI.Button(new Rect(250, 1100, 128, 128), btnTextures[8]))
+                   Debug.Log("Clicked the button with an Image1");
+               if (GUI.Button(new Rect(400, 1100, 128, 128), btnTextures[9]))
+                   Debug.Log("Clicked the button with an Image1");
+               if (GUI.Button(new Rect(550, 1100, 128, 128), btnTextures[10]))
+                   Debug.Log("Clicked the button with an Image1");
+               if (GUI.Button(new Rect(700, 1100, 128, 128), btnTextures[11]))
+                   Debug.Log("Clicked the button with an Image1");
+           
+    
+       }
+        if (openMuseum)
+       {
+           GUI.backgroundColor = new Color(0,0,0,0);
            GUI.DrawTexture(new Rect(100, 100, 900, 2000), aTexture, ScaleMode.ScaleToFit, true, 0.0F);
           
                if (GUI.Button(new Rect(250, 390, 128, 128), btnTextures[0]))
@@ -318,11 +344,35 @@ public class playerMove : MonoBehaviour
                if (GUI.Button(new Rect(700, 1100, 128, 128), btnTextures[11]))
                    Debug.Log("Clicked the button with an Image1");
            
+               //Slider
+               //vSliderValue = GUI.HorizontalSlider(new Rect(25, 25, 100, 30), vSliderValue, 0.0f, 10.0f, btnTextures[1], btnTextures[2]);
+               textureIndex =
+                   (int)GUI.HorizontalSlider(
+                       new Rect(25, 70, 100, 30),
+                       textureIndex,
+                       0,
+                       sliderTextures.Length-1);
+ 
+               GUI.DrawTexture(
+                   new Rect(10, 10, 60, 60),
+                   sliderTextures[textureIndex],
+                   ScaleMode.ScaleToFit,
+                   true,
+                   10.0F);
     
        }
 
    }
 
- 
+   private void addRope(int amt)
+   {
+       ropeAmt = ropeAmt + amt;
+       ropeText.text = "Rope left:" + ropeAmt;
+
+   }
+   
+   
+
+
 }
 

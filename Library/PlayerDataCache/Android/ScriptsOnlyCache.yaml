@@ -1405,7 +1405,7 @@ ScriptsOnlyBuild:
     className: NetworkAnimator
   - hash:
       serializedVersion: 2
-      Hash: 391929699bf8ac8e05394dc26633974a
+      Hash: 88cc27104a111140fbb4783a4a6921ca
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: playerMove
@@ -1478,4 +1478,4 @@ ScriptsOnlyBuild:
   platform: 13
   scenePathNames:
   - Assets/Scenes/Scene1.unity
-  playerPath: C:/Users/mlhdr/Downloads/Build6.apk
+  playerPath: C:/Users/mlhdr/Downloads/Build8.apk

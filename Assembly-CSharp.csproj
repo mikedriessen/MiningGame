@@ -69,11 +69,12 @@
     <Compile Include="Assets\_Scripts\Camera\CameraBorders.cs" />
     <Compile Include="Assets\_Scripts\Camera\CameraFollow.cs" />
     <Compile Include="Assets\_Scripts\Camera\CameraMove.cs" />
+    <Compile Include="Assets\_Scripts\ColorGradient.cs" />
+    <Compile Include="Assets\_Scripts\NewBehaviourScript.cs" />
+    <Compile Include="Assets\_Scripts\playerMove.cs" />
+    <Compile Include="Assets\_Scripts\Singleton.cs" />
     <Compile Include="Assets\_Scripts\SwipeManager.cs" />
     <Compile Include="Assets\_Scripts\XPSlider.cs" />
-    <Compile Include="Assets\ColorGradient.cs" />
-    <Compile Include="Assets\NewBehaviourScript.cs" />
-    <Compile Include="Assets\playerMove.cs" />
     <Compile Include="Assets\SampleScenes\Menu\Scripts\MenuSceneLoader.cs" />
     <Compile Include="Assets\SampleScenes\Menu\Scripts\PauseMenu.cs" />
     <Compile Include="Assets\SampleScenes\Menu\Scripts\SceneAndURLLoader.cs" />
@@ -82,8 +83,6 @@
     <Compile Include="Assets\SampleScenes\Scripts\ParticleSceneControls.cs" />
     <Compile Include="Assets\SampleScenes\Scripts\PlaceTargetWithMouse.cs" />
     <Compile Include="Assets\SampleScenes\Scripts\SlowMoButton.cs" />
-    <Compile Include="Assets\Singleton.cs" />
-    <None Include="Assets\_Scripts\SwipeDelay.txt" />
     <None Include="Assets\SampleScenes\Shaders\Skybox-Procedural.shader" />
     <Reference Include="Unity.Timeline.Editor">
       <HintPath>D:/School/GitHub/MiningGame/MiningGame/Library/ScriptAssemblies/Unity.Timeline.Editor.dll</HintPath>
