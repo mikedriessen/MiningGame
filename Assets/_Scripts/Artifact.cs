@@ -7,7 +7,7 @@ public class Artifact : MonoBehaviour
 {
 
     public Text countText;
-    private int count;
+    public int count;
 
     private void Start()
     {
@@ -42,5 +42,13 @@ public class Artifact : MonoBehaviour
     void SetCountText()
     {
         countText.text = "Count: " + count.ToString();
+    }
+
+    void Score()
+    {
+        if (count == 1)
+        {
+            Debug.Log("WOW MOOI MAN");
+        }
     }
 }
