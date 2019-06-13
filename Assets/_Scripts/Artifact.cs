@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class Artifact : MonoBehaviour
 {
@@ -24,8 +25,7 @@ public class Artifact : MonoBehaviour
             RaycastHit hit;
             if (Physics.Raycast(ray, out hit))
             {
-                Debug.Log("YEET");
-                //nee
+                
 
             if (hit.collider.CompareTag("Artifact"))
             {
@@ -35,6 +35,10 @@ public class Artifact : MonoBehaviour
                 count++;
                 SetCountText();
             }
+            }
+            if (count == 1)
+            {
+                SceneManager.LoadScene("Start");
             }
         }
     }

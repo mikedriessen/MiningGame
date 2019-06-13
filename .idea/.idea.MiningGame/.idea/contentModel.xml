@@ -15,13 +15,13 @@
             <e p="CameraFollow.cs" t="Include" />
             <e p="CameraMove.cs" t="Include" />
           </e>
-          <e p="SwipeDelay.txt" t="Include" />
+          <e p="ColorGradient.cs" t="Include" />
+          <e p="NewBehaviourScript.cs" t="Include" />
+          <e p="playerMove.cs" t="Include" />
+          <e p="Singleton.cs" t="Include" />
           <e p="SwipeManager.cs" t="Include" />
           <e p="XPSlider.cs" t="Include" />
         </e>
-        <e p="ColorGradient.cs" t="Include" />
-        <e p="NewBehaviourScript.cs" t="Include" />
-        <e p="playerMove.cs" t="Include" />
         <e p="SampleScenes" t="Include">
           <e p="Menu" t="Include">
             <e p="Scripts" t="Include">
@@ -41,7 +41,6 @@
             <e p="Skybox-Procedural.shader" t="Include" />
           </e>
         </e>
-        <e p="Singleton.cs" t="Include" />
         <e p="Standard Assets" t="Include">
           <e p="2D" t="Include">
             <e p="Scripts" t="Include">
