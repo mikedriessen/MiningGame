@@ -38,7 +38,8 @@ public class Artifact : MonoBehaviour
             }
             if (count == 1)
             {
-                SceneManager.LoadScene("Start");
+                //SceneManager.LoadScene("Start");
+                Debug.Log("GOOD JOB");
             }
         }
     }

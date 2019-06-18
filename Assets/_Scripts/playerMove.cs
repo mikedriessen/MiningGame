@@ -55,6 +55,7 @@ public class playerMove : MonoBehaviour
         if (canMove)
         {
             Debug.DrawRay(transform.position, transform.up * 0.8f);
+            //AudioManagerScript.PlaySound("StoneBlock");
 
             Ray ray = new Ray(this.transform.position, this.transform.up);
             if (Physics.Raycast(ray, out hit_Info, 0.8f))
@@ -73,6 +74,7 @@ public class playerMove : MonoBehaviour
                         {
                             ropeAmt--;
                             XPSlider.Brain.AddXP();
+                            AudioManagerScript.PlaySound("StoneBlock");
                         }
                         ropeText.text = "Rope left:" + ropeAmt;
                         this.transform.Translate(0, yUp, 0);
@@ -113,7 +115,8 @@ public class playerMove : MonoBehaviour
         if (canMove)
         {
             Debug.DrawRay(transform.position,transform.up*-1f * 5f);
-            
+            //AudioManagerScript.PlaySound("StoneBlock");
+
             Ray ray = new Ray(this.transform.position, transform.up * -1f);
             if (Physics.Raycast(ray,out hit_Info,0.8f))
             {
@@ -135,6 +138,7 @@ public class playerMove : MonoBehaviour
                         {
                             ropeAmt--;
                             XPSlider.Brain.AddXP();
+                            AudioManagerScript.PlaySound("StoneBlock");
                         }
                         ropeText.text = "Rope left:" + ropeAmt;
                         this.transform.Translate(0, yDown, 0);
@@ -156,7 +160,8 @@ public class playerMove : MonoBehaviour
         if (canMove)
         {
             Debug.DrawRay(transform.position,transform.right*-1f* 5f);
-            
+            //AudioManagerScript.PlaySound("StoneBlock");
+
             Ray ray = new Ray(this.transform.position, transform.right * -1f );
             if (Physics.Raycast(ray,out hit_Info,1f))
             {
@@ -179,6 +184,7 @@ public class playerMove : MonoBehaviour
                         {
                             ropeAmt--;
                             XPSlider.Brain.AddXP();
+                            AudioManagerScript.PlaySound("StoneBlock");
                         }
                         ropeText.text = "Rope left:" + ropeAmt;
                         this.transform.Translate(xLeft, 0, 0);
@@ -200,7 +206,8 @@ public class playerMove : MonoBehaviour
         if (canMove)
         {
             Debug.DrawRay(transform.position,transform.right* 5f);
-            
+            //AudioManagerScript.PlaySound("StoneBlock");
+
             Ray ray = new Ray(this.transform.position, transform.right);
             if (Physics.Raycast(ray,out hit_Info,1f))
             {
@@ -223,6 +230,7 @@ public class playerMove : MonoBehaviour
                         {
                             ropeAmt--;
                             XPSlider.Brain.AddXP();
+                            AudioManagerScript.PlaySound("StoneBlock");
                         }
                         ropeText.text = "Rope left:" + ropeAmt;
                         this.transform.Translate(xRight, 0, 0);
