@@ -72,6 +72,6 @@ public class XPSlider : MonoBehaviour
     levelUpBar.maxValue = experienceNeededToLevelUp;
 
     level += 1;
-    currentLevel.text = "Level" + level;
+    currentLevel.text = "LEVEL" + level;
 }
 }

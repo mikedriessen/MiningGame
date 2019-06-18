@@ -11,7 +11,7 @@ public class Artifact : MonoBehaviour
 
     private void Start()
     {
-        countText.text = "Artifacts:" + count;
+        countText.text =  count.ToString();
     }
 
     void Update()
@@ -41,7 +41,7 @@ public class Artifact : MonoBehaviour
 
     void SetCountText()
     {
-        countText.text = "Count: " + count.ToString();
+        countText.text = count.ToString();
     }
 
     void Score()

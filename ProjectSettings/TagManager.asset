@@ -12,6 +12,7 @@ TagManager:
   - Move
   - Destroyed
   - Museum
+  - Slider
   layers:
   - Default
   - TransparentFX

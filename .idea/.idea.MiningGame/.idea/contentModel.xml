@@ -16,9 +16,12 @@
             <e p="CameraMove.cs" t="Include" />
           </e>
           <e p="ColorGradient.cs" t="Include" />
-          <e p="NewBehaviourScript.cs" t="Include" />
+          <e p="Escape.cs" t="Include" />
+          <e p="MovingBackground.cs" t="Include" />
           <e p="playerMove.cs" t="Include" />
+          <e p="SettingsMenu.cs" t="Include" />
           <e p="Singleton.cs" t="Include" />
+          <e p="StartScreen.cs" t="Include" />
           <e p="SwipeManager.cs" t="Include" />
           <e p="XPSlider.cs" t="Include" />
         </e>
