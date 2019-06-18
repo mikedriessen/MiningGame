@@ -18,6 +18,9 @@ public class Singleton : MonoBehaviour
 
   public Texture[] btnTextures;
   
+  //Music volume
+  public float musicSliderValue = 0.0F;
+  
   public static class ResourceExt
   {
          static Dictionary<string, Texture> loadedTextures = new Dictionary<string, Texture>();
@@ -124,6 +127,11 @@ public class Singleton : MonoBehaviour
                             //  Debug.Log("Clicked the button with an Image1");
                        enableSettings = false;
                        //enableSettings = false;
+                       GUIStyle guiStyle = new GUIStyle();
+                       guiStyle.normal.textColor = Color.white;
+                       guiStyle.fontSize = 100;
+                       GUI.Box(new Rect (100,100,500,300), "Speed", guiStyle);
+                       musicSliderValue = GUI.HorizontalSlider(new Rect(100, 100, 200, 150), musicSliderValue, 0.0F, 10.0F);
                 }   
          }
 
